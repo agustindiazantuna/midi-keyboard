@@ -18,18 +18,6 @@ button_t key[KEY_OUT_LEN][KEY_IN_LEN] = {
 //  IN          9               10                  11                  12                  13                 14                  15
 };
 
-// button_t key[KEY_OUT_LEN][KEY_IN_LEN] = {
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 25}, {RELEASED, 0, 33}, {RELEASED, 0, 41}, {RELEASED, 0, 49}, {RELEASED, 0, 57}, {RELEASED, 0, 65}, }, // OUT 1
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 26}, {RELEASED, 0, 34}, {RELEASED, 0, 42}, {RELEASED, 0, 50}, {RELEASED, 0, 58}, {RELEASED, 0, 66}, }, // OUT 2
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 27}, {RELEASED, 0, 35}, {RELEASED, 0, 43}, {RELEASED, 0, 51}, {RELEASED, 0, 59}, {RELEASED, 0, 67}, }, // OUT 3
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 28}, {RELEASED, 0, 36}, {RELEASED, 0, 44}, {RELEASED, 0, 52}, {RELEASED, 0, 60}, {RELEASED, 0, 68}, }, // OUT 4
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 29}, {RELEASED, 0, 37}, {RELEASED, 0, 45}, {RELEASED, 0, 53}, {RELEASED, 0, 61}, {RELEASED, 0, 69}, }, // OUT 5
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 30}, {RELEASED, 0, 38}, {RELEASED, 0, 46}, {RELEASED, 0, 54}, {RELEASED, 0, 62}, {RELEASED, 0, 70}, }, // OUT 6
-//     { {RELEASED, 0, 99}, {RELEASED, 0, 31}, {RELEASED, 0, 39}, {RELEASED, 0, 47}, {RELEASED, 0, 55}, {RELEASED, 0, 63}, {RELEASED, 0, 71}, }, // OUT 7
-//     { {RELEASED, 0, 24}, {RELEASED, 0, 32}, {RELEASED, 0, 40}, {RELEASED, 0, 48}, {RELEASED, 0, 56}, {RELEASED, 0, 64}, {RELEASED, 0, 72}, }, // OUT 8
-// //  IN          9               10                  11                  12                  13                 14                  15
-// };
-
 uint32_t key_in[KEY_IN_LEN] = {
     PIN_9,
     PIN_10,
@@ -91,9 +79,6 @@ void keyboard_debouncer(uint32_t *midi_keyboard, debounce_t *midi_status) {
                 } else if (REL_TO_DET == key[i][j].status) {
                     key[i][j].debounce_counter++;
                     if (DEBOUNCE_CYCLE < key[i][j].debounce_counter) {
-                        // sprintf(buff, "out: PIN_%d in: PIN_%d\n", (int)_aweful_translate(key_out[i]),
-                        //                                           (int)_aweful_translate(key_in[j]));
-                        // Serial.println(buff);
                         key[i][j].status = DETECTED;
                         *midi_keyboard = key[i][j].midi_note;
                         *midi_status = key[i][j].status;
